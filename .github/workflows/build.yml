@@ -6,10 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/cache@v2
-      with:
-        path: linux
-        key: cache-${{ hashFiles('linux.version') }}
     - run: docker run -v $PWD:/root/virt ubuntu:22.04 sh -c 'cd ~/virt && ./build.sh'  && tar czf vmlinuz.tar.gz vmlinuz 
     - uses: actions/upload-artifact@v2
       with:
