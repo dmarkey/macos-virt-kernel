@@ -1,12 +1,15 @@
 name: Build
-on:
-  workflow_dispatch:
+on: push
+
+env:
+  GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  BRANCH: ${{ github.head_ref }}
 jobs:
   build-base:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - run: docker run -v $PWD:/root/virt ubuntu:22.04 sh -c 'cd ~/virt && ./build.sh'  && tar czf kernels.tar.gz vmlinuz-amd64 vmlinuz-arm64
+    - run: docker run -v $PWD:/root/virt ubuntu:22.04 sh -c 'cd ~/virt && ./build.sh'
     - uses: actions/upload-artifact@v2
       with:
         name: kernels

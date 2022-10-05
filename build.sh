@@ -15,13 +15,26 @@ if [ ! -d linux ]; then
 fi
 cd linux
 cp ../linux.config .config
-make
+#make
 if [ ! "aarch64" = "$(uname -m)" ]; then
     echo "cross compiling on $(uname -m)"
     export CROSS_COMPILE=aarch64-pc-linux-gnu
 fi
-ARCH=arm64 make CC=clang LLVM=1 LLVM_IAS=1 -j2 $*
+#ARCH=arm64 make CC=clang LLVM=1 LLVM_IAS=1 -j2 $*
 cp .config ../linux.config
-cp arch/arm64/boot/Image ../vmlinuz-arm64
-cp arch/x86/boot/bzImage ../vmlinuz-amd64
+#cp arch/arm64/boot/Image ../vmlinuz-arm64
+#cp arch/x86/boot/bzImage ../vmlinuz-amd64
+touch ../vmlinuz-arm64
+touch ../vmlinuz-amd64
+
 cd ..
+gzip vmlinuz-arm64
+mv vmlinuz-arm64.gz vmlinuz-arm64
+
+if [ "$BRANCH" = "master" ] ; then
+    mkdir release_assets
+    cp vmlinuz-arm64 release_assets
+    cp vmlinuz-amd64 release_assets
+    $release_name=$(git log -1 --format=%cd-%h --date=format:'%Y-%m-%d')
+    gh release create $release_name release_assets/*
+fi
