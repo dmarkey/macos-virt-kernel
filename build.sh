@@ -1,10 +1,10 @@
 #!/bin/bash
-git config --global --add safe.directory /root/virt
 if [ ! -d mnt ]; then
    apt update
    apt install -y wget xz-utils patch bc make clang llvm lld flex bison libelf-dev libncurses-dev libssl-dev git 
 fi
 
+git config --global --add safe.directory /root/virt
 wget https://github.com/cli/cli/releases/download/v2.17.0/gh_2.17.0_linux_amd64.deb
 dpkg -i gh_2.17.0_linux_amd64.deb
 
