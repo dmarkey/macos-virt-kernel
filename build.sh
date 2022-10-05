@@ -33,7 +33,7 @@ gzip vmlinuz-arm64
 mv vmlinuz-arm64.gz vmlinuz-arm64
 echo 
 echo Branch:$BRANCH
-if [[ "$BRANCH" == "master" ]] ; then
+if [ "$BRANCH" = "master" ] ; then
     mkdir release_assets
     cp vmlinuz-arm64 release_assets
     cp vmlinuz-amd64 release_assets
