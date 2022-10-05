@@ -1,9 +1,12 @@
 name: Build
-on: push
+on:
+  push:
+    tags-ignore:        
+      - *
 
 env:
   GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-  BRANCH: ${{ github.head_ref }}
+  BRANCH: ${{github.ref_name}}
 jobs:
   build-base:
     runs-on: ubuntu-latest

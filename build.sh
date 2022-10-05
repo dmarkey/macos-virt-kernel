@@ -1,5 +1,8 @@
 #!/bin/sh
 
+echo $BRANCH
+exit
+
 if [ ! -d mnt ]; then
    apt update
    apt install -y wget xz-utils patch bc make clang llvm lld flex bison libelf-dev libncurses-dev libssl-dev
