@@ -1,6 +1,4 @@
 #!/bin/sh
-echo $BRANCH
-exit
 
 if [ ! -d mnt ]; then
    apt update
