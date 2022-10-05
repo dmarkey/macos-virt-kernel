@@ -36,8 +36,9 @@ mv vmlinuz-arm64.gz vmlinuz-arm64
 echo 
 echo Branch:$BRANCH
 if [[ "$BRANCH" == "master" ]] ; then
+    mkdir release_assets
+    cp vmlinuz-arm64 release_assets
+    cp vmlinuz-amd64 release_assets
     release_name=$(git log -1 --format=%cd-%h --date=format:'%Y-%m-%d')
     gh release create $release_name release_assets/*
-    gh release upload $release_name vmlinuz-arm64
-    gh release upload $release_name vmlinuz-amd64
 fi
