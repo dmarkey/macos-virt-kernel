@@ -27,8 +27,8 @@ fi
 cp .config ../linux.config
 #cp arch/arm64/boot/Image ../vmlinuz-arm64
 #cp arch/x86/boot/bzImage ../vmlinuz-amd64
-touch ../vmlinuz-arm64
-touch ../vmlinuz-amd64
+echo "foo" >> ../vmlinuz-arm64
+echo "bar" >> ../vmlinuz-amd64
 
 cd ..
 gzip vmlinuz-arm64
