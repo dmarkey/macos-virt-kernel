@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 if [ ! -d mnt ]; then
    apt update
    apt install -y wget xz-utils patch bc make clang llvm lld flex bison libelf-dev libncurses-dev libssl-dev git 
@@ -39,6 +39,6 @@ if [[ "$BRANCH" == "master" ]] ; then
     mkdir release_assets
     cp vmlinuz-arm64 release_assets
     cp vmlinuz-amd64 release_assets
-    $release_name=$(git log -1 --format=%cd-%h --date=format:'%Y-%m-%d')
+    release_name=$(git log -1 --format=%cd-%h --date=format:'%Y-%m-%d')
     gh release create $release_name release_assets/*
 fi
