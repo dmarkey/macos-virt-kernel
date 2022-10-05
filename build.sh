@@ -22,5 +22,6 @@ if [ ! "aarch64" = "$(uname -m)" ]; then
 fi
 ARCH=arm64 make CC=clang LLVM=1 LLVM_IAS=1 -j2 $*
 cp .config ../linux.config
-cp arch/arm64/boot/Image ../vmlinuz
+cp arch/arm64/boot/Image ../vmlinuz-arm64
+cp arch/x86/boot/bzImage ../vmlinuz-amd64
 cd ..
