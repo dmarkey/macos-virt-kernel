@@ -26,7 +26,8 @@ fi
 ARCH=arm64 make CC=clang LLVM=1 LLVM_IAS=1 -j2 $*
 cp .config ../linux.config
 cp arch/arm64/boot/Image ../vmlinuz-arm64
-cp arch/x86/boot/bzImage ../vmlinuz-amd64
+cp arch/x86/boot/bzImage ../vmlinuz-x86_64
+
 
 cd ..
 gzip vmlinuz-arm64
@@ -36,7 +37,7 @@ echo Branch:$BRANCH
 if [[ "$BRANCH" == "master" ]] ; then
     mkdir release_assets
     cp vmlinuz-arm64 release_assets
-    cp vmlinuz-amd64 release_assets
+    cp vmlinuz-x86_64 release_assets
     release_name=$(git log -1 --format=%cd-%h --date=format:'%Y-%m-%d')
     gh release create $release_name release_assets/*
 fi
