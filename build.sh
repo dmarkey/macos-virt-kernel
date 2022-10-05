@@ -30,7 +30,7 @@ touch ../vmlinuz-amd64
 cd ..
 gzip vmlinuz-arm64
 mv vmlinuz-arm64.gz vmlinuz-arm64
-
+env
 if [ "$BRANCH" = "master" ] ; then
     mkdir release_assets
     cp vmlinuz-arm64 release_assets
