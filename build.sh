@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 wget https://github.com/cli/cli/releases/download/v2.17.0/gh_2.17.0_linux_amd64.deb
 dpkg -i gh_2.17.0_linux_amd64.deb
 if [ ! -d mnt ]; then
@@ -33,7 +33,7 @@ gzip vmlinuz-arm64
 mv vmlinuz-arm64.gz vmlinuz-arm64
 echo 
 echo Branch:$BRANCH
-if [ "$BRANCH" = "master" ] ; then
+if [[ "$BRANCH" = "master" ]] ; then
     mkdir release_assets
     cp vmlinuz-arm64 release_assets
     cp vmlinuz-amd64 release_assets
