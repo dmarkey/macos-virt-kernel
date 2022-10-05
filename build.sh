@@ -1,6 +1,5 @@
 #!/bin/sh
-
-echo Run echo running on branch ${GITHUB_REF##*/} ${GITHUB_REF}
+echo $BRANCH
 exit
 
 if [ ! -d mnt ]; then

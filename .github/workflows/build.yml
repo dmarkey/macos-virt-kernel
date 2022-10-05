@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - run: docker run -v $PWD:/root/virt ubuntu:22.04 sh -c 'cd ~/virt && ./build.sh'
+    - run: docker run -e BRANCH -e GH_TOKEN -v $PWD:/root/virt ubuntu:22.04 sh -c 'cd ~/virt && ./build.sh'
     - uses: actions/upload-artifact@v2
       with:
         name: kernels
