@@ -15,6 +15,7 @@ if [ ! -d linux ]; then
 fi
 cd linux
 cp ../linux.config .config
+make
 if [ ! "aarch64" = "$(uname -m)" ]; then
     echo "cross compiling on $(uname -m)"
     export CROSS_COMPILE=aarch64-pc-linux-gnu
